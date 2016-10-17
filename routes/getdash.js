@@ -7,7 +7,7 @@ var CityModel = require('./citymodule');
 router.post('/', function(req, res, next) {
   console.log("we are in the getdash function");
   console.log(req.body);
-  mongoose.connect('mongodb://127.0.0.1:27017/cityDatabase');
+  mongoose.connect('mongodb://dbuser:123@ds059516.mlab.com:59516/citydatabase');
   // console.log(mongoose.connection.readyState);
   //res.end("this is sent from getdash functon");
   CityModel.find({ip:req.body.ip},function(err,data){
