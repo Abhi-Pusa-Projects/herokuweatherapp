@@ -5,16 +5,13 @@ var cityModel  = require('./citymodule');
 
 router.post('/',function(req,res,next){
     //console.log("calling from delete route function");
-    mongoose.connect("mongodb://dbuser:123@ds059516.mlab.com:59516/citydatabase");
     // console.log(mongoose.connection.readyState);
     // console.log(req.body);
     cityModel.remove(req.body,function(err){
       if(!err){
-        mongoose.connection.close();
         res.end("data deleted successfully");
       }
       else{
-        mongoose.connection.close();
         res.end("data not removed");
       }
     })

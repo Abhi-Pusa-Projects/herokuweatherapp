@@ -4,14 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+const mongoose = require('mongoose');
 var routes = require('./routes/index');
 var getdash = require('./routes/getdash');
 var addnewdash = require('./routes/addnewdash');
 var deletedash = require('./routes/deletedash');
 
 var app = express();
-
+  mongoose.connect('mongodb://dbuser:123@ds059516.mlab.com:59516/citydatabase',function (err,data) {
+    console.log(err,'....................',data);
+  });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
@@ -59,6 +61,8 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
+process.on('UnhandledException',function (err) {
+  console.log(err);
+})
 
 module.exports = app;
